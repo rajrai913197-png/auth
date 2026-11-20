@@ -16,4 +16,14 @@ const PropertyModel =require("../model/Property")
    res.json(propertyData)
 
  }
- module.exports = {addProperty,getProperty,getPropertyDetails}
+ const deleteproperty = async (req,res)=>{
+       const {id} = await req.params
+          const deleteprodata = await   PropertyModel.findOneAndDelete(id)
+          res.json(deleteprodata)
+ }
+ const propertyupdate = async(req,res)=>{
+       const {id} = await req.params
+     const propertyupdateData = await  PropertyModel.findByIdAndUpdate(id,req.body,{returnDocument:true})
+     res.json(propertyupdateData)
+ }
+ module.exports = {addProperty,getProperty,getPropertyDetails,deleteproperty,propertyupdate}
