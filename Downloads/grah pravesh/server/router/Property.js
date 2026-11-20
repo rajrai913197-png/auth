@@ -1,0 +1,9 @@
+const  {addProperty,getProperty,getPropertyDetails}=require("../controller/propertyController")
+const  authMiddle = require("../authMiddleware/auth")
+const upload = require("../multer/multer")
+const express = require("express")
+ let router = express.Router()
+router.post("/add",authMiddle,upload.array("images", 5),addProperty)
+router.get("/find",authMiddle,getProperty)
+router.get("/propertyfind/:id",getPropertyDetails)
+ module.exports = router
